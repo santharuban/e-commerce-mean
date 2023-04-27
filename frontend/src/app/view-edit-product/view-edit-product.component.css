@@ -1,0 +1,16 @@
+.container {
+  padding-top: 150px;
+  padding-bottom: 150px;
+  background-color: #ccc;
+}
+
+#class {
+  background-color: #deebdd;
+}
+
+.back {
+  position: fixed;
+  top: 130px;
+  margin-left: 15px;
+  border-radius: 30px;
+}

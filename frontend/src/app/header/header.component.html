@@ -1,0 +1,19 @@
+<body>
+  <div class="box-area">
+    <header>
+      <div class="logo">
+        <h1>Grocery Shopping</h1>
+      </div>
+      <nav>
+        <a routerLink="/home" routerLinkActive="active">Home</a>
+        <a routerLink="/cart" routerLinkActive="active"
+          >Cart <strong style="color: red">{{ totalitem }}</strong></a
+        >
+        <a routerLink="/products" routerLinkActive="active">Products</a>
+        <a routerLink="/admin" routerLinkActive="active">Admin</a>
+        <a routerLink="/login" routerLinkActive="active" *ngIf="!hide">Login</a>
+        <a *ngIf="hide" (click)="Logout()">Logout</a>
+      </nav>
+    </header>
+  </div>
+</body>

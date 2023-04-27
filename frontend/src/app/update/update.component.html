@@ -1,0 +1,119 @@
+<body>
+  <div>
+    <div class="heading">
+      <h1>Edit New Product</h1>
+    </div>
+    <div class="product">
+      <form class="form" #addproduct="ngForm" (ngSubmit)="onSubmit(addproduct)">
+        <div class="input">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="enter the productid"
+            name="id"
+            id="id"
+            required
+            ngModel
+            #productid="ngModel"
+            [(ngModel)]="product._id"
+          />
+          <span *ngIf="!productid.valid && productid.touched"
+            >character are not allowed</span
+          >
+        </div>
+        <br />
+        <div class="input">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="enter the title"
+            name="title"
+            id="title"
+            required
+            pattern="^[a-zA-Z]+$"
+            ngModel
+            #title="ngModel"
+            [(ngModel)]="product.title"
+          />
+          <span *ngIf="!title.valid && title.touched"
+            >Numbers are not allowed</span
+          >
+        </div>
+        <br />
+        <div class="input">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="enter the price"
+            name="price"
+            id="price"
+            required
+            pattern="^[0-9]+$"
+            ngModel
+            #price="ngModel"
+            [(ngModel)]="product.price"
+          />
+          <span *ngIf="!price.valid && price.touched"
+            >character are not allowed</span
+          >
+        </div>
+        <br />
+        <div class="input">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="enter the quantity"
+            name="quantity"
+            id="quantity"
+            required
+            ngModel
+            #quantity="ngModel"
+            [(ngModel)]="product.quantity"
+          />
+          <span *ngIf="!quantity.valid && quantity.touched"
+            >Please enter the quantity</span
+          >
+        </div>
+        <br />
+        <div class="input">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="enter the url"
+            name="image"
+            id="image"
+            required
+            ngModel
+            #image="ngModel"
+            [(ngModel)]="product.image"
+          />
+          <span *ngIf="!image.valid && image.touched"
+            >Please enter the image url</span
+          >
+        </div>
+        <br />
+        <div class="input">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="enter the category"
+            name="category"
+            id="category"
+            required
+            ngModel
+            #category="ngModel"
+            [(ngModel)]="product.category"
+          />
+          <span *ngIf="!category.valid && category.touched"
+            >Please enter the image url</span
+          >
+        </div>
+        <br />
+        <button class="center" type="submit" [disabled]="!addproduct.valid">
+          Add product
+        </button>
+      </form>
+    </div>
+    <br />
+  </div>
+</body>

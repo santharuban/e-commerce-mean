@@ -1,0 +1,15 @@
+footer {
+  height: 100px;
+  width: 100px;
+  text-align: center;
+  padding: 3px;
+  position: fixed;
+  bottom: 0;
+  background-color: #141b22;
+  width: 100%;
+}
+
+footer a,
+p {
+  color: aliceblue;
+}

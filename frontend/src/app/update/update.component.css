@@ -1,0 +1,61 @@
+form {
+  padding-top: 10px;
+  margin-left: 430px;
+}
+
+.display {
+  display: flex;
+}
+
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  padding: 9px;
+  border: 3px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+  margin-right: 90px;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+.heading {
+  padding-top: 50px;
+  margin-left: 550px;
+}
+
+.center {
+  margin-left: 250px;
+}
+
+.form {
+  border: 1px solid black;
+  margin-top: 30px;
+  margin-right: 500px;
+  margin-left: 300px;
+  padding: 30px;
+  background-color: #f9c5d1;
+}
+
+.input {
+  padding-left: 100px;
+  margin-left: 70px;
+  margin-right: 150px;
+}
+
+body {
+  background-color: #deebdd;
+}
+
+.form-control.ng-touched.ng-invalid {
+  border: 1px solid red;
+}
+
+.heading h1 {
+  font-size: 35px;
+}

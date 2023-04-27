@@ -1,0 +1,52 @@
+.card {
+  height: 60px;
+  margin: 25px;
+  padding: 25px;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.card-table {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: none;
+  word-wrap: break-word;
+  background-clip: border-box;
+  border: 1px solid black;
+  background-image: linear-gradient(315deg, #deebdd 0%, #bbdbbe 74%);
+}
+
+.container {
+  padding-top: 150px;
+}
+
+.align {
+  margin-right: 2%;
+}
+
+.color {
+  background-image: linear-gradient(315deg, #98d9e1 0%, #d6aed6 74%);
+}
+
+#class {
+  background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
+}
+
+.a,
+.b {
+  width: 30px;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.c {
+  padding: 5px;
+  display: flex;
+}

@@ -1,0 +1,60 @@
+<div class="body">
+  <div class="heading">
+    <h1>Please login to continue!!!</h1>
+  </div>
+  <div class="container">
+    <div class="screen">
+      <div class="screen__content">
+        <form class="login" [formGroup]="Form" (ngSubmit)="onSubmit()">
+          <div class="login__field">
+            <input
+              type="text"
+              class="login__input"
+              placeholder="Username"
+              formControlName="email"
+              name="email"
+            />
+          </div>
+          <div class="login__field">
+            <i class="login__icon fas fa-lock"></i>
+            <input
+              type="password"
+              class="login__input"
+              placeholder="Password"
+              formControlName="password"
+              name="password"
+            />
+            <span
+              id="c"
+              *ngIf="
+                Form.get('password')?.invalid && Form.get('password')?.touched
+              "
+              >Password invalid</span
+            >
+          </div>
+          <button class="button login__submit" [disabled]="Form.invalid">
+            <span routerLink="/products" class="button__text">Log In Now</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+          </button>
+        </form>
+      </div>
+      <br />
+      <a routerLink="/signup">New user? click to Signup</a>
+      <div class="screen__background">
+        <span
+          class="screen__background__shape screen__background__shape4"
+        ></span>
+        <span
+          class="screen__background__shape screen__background__shape3"
+        ></span>
+        <span
+          class="screen__background__shape screen__background__shape2"
+        ></span>
+        <span
+          class="screen__background__shape screen__background__shape1"
+        ></span>
+      </div>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

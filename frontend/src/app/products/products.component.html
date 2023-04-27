@@ -1,0 +1,99 @@
+<app-header></app-header>
+
+<div class="cart-top container-fluid">
+  <div class="container d-flex">
+    <div class="item">
+      <a (click)="filter('statinory')">
+        <img
+          style="width: 100px; height: 80px"
+          src="../../assets/statinory.jpeg"
+          alt=""
+        />
+        <h4>statinory</h4>
+      </a>
+    </div>
+    <div class="item">
+      <a (click)="filter('ricemasala')">
+        <img
+          style="width: 100px; height: 80px"
+          src="../../assets/finalrice.jpeg"
+          alt=""
+        />
+        <h4>rice&masala</h4>
+      </a>
+    </div>
+    <div class="item">
+      <a (click)="filter('dhals')">
+        <img
+          style="width: 100px; height: 80px"
+          src="../../assets/finaldhal.jpeg"
+          alt=""
+        />
+        <h4>dhals</h4>
+      </a>
+    </div>
+    <div class="item">
+      <a (click)="filter('soft drinks')">
+        <img
+          style="width: 100px; height: 80px"
+          src="../../assets/softdrinks.jpeg"
+          alt=""
+        />
+        <h4>soft drinks</h4>
+      </a>
+    </div>
+    <div class="item">
+      <a (click)="filter('vegatables')">
+        <img
+          style="width: 100px; height: 80px"
+          src="../../assets/vegtables.jpeg"
+          alt=""
+        />
+        <h4>vegatables</h4>
+      </a>
+    </div>
+    <div class="item">
+      <a (click)="filter('fruits')">
+        <img
+          style="width: 100px; height: 80px"
+          src="../../assets/fruits.jpeg"
+          alt=""
+        />
+        <h4>fruits</h4>
+      </a>
+    </div>
+    <div class="item">
+      <a (click)="filter('bodyessentials')">
+        <img
+          style="width: 100px; height: 80px"
+          src="../../assets/bodylotion.jpeg"
+          alt=""
+        />
+        <h4>body essentials</h4>
+      </a>
+    </div>
+  </div>
+</div>
+<div>
+  <body id="row">
+    <div class="container">
+      <div class="row">
+        <ng-container *ngFor="let item of filterCategory">
+          <div class="card col-md-3">
+            <img src="{{ item.image }}" alt="" />
+            <h2>
+              <b>{{ item.title }}</b>
+            </h2>
+            <p><strong>Price:</strong>{{ item.price | currency : "INR" }}</p>
+            <p>
+              <b>{{ item.quantity }}</b>
+            </p>
+            <button class="btn btn-primary" (click)="addCart(item)">
+              Add to Cart
+            </button>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </body>
+</div>

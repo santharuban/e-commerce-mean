@@ -1,0 +1,122 @@
+<div class="body">
+  <div class="heading">
+    <h1>Register your details</h1>
+  </div>
+  <div class="container">
+    <div class="screen">
+      <div class="screen__content">
+        <form
+          class="login"
+          [formGroup]="signupForm"
+          (ngSubmit)="signUp(signupForm.value)"
+        >
+          <div class="login__field">
+            <input
+              type="text"
+              class="login__input"
+              placeholder="First name"
+              formControlName="firstname"
+              id="firstname"
+            />
+            <span
+              id="c"
+              *ngIf="
+                !signupForm.get('firstname')?.valid &&
+                signupForm.get('firstname')?.touched
+              "
+              >Please enter characters</span
+            >
+          </div>
+          <div class="login__field">
+            <input
+              type="text"
+              class="login__input"
+              placeholder="Last name"
+              formControlName="lastname"
+              id="lastname"
+            />
+            <span
+              id="c"
+              *ngIf="
+                signupForm.get('lastname')?.invalid &&
+                signupForm.get('lastname')?.touched
+              "
+              >Please enter characters</span
+            >
+          </div>
+          <div class="login__field">
+            <input
+              type="email"
+              class="login__input"
+              placeholder="Email"
+              formControlName="email"
+              id="email"
+            />
+            <span
+              id="c"
+              *ngIf="
+                signupForm.get('email')?.invalid &&
+                signupForm.get('email')?.touched
+              "
+              >Enter valid email</span
+            >
+          </div>
+          <div class="login__field">
+            <input
+              type="text"
+              class="login__input"
+              placeholder="Mobile number"
+              id="mobilenumber"
+              formControlName="mobilenumber"
+            />
+            <span
+              id="c"
+              *ngIf="
+                signupForm.get('mobilenumber')?.invalid &&
+                signupForm.get('mobilenumber')?.dirty
+              "
+              >Numbers only allowed</span
+            >
+          </div>
+          <div class="login__field">
+            <input
+              type="password"
+              class="login__input"
+              placeholder="password"
+              formControlName="password"
+              id="password"
+            />
+            <span
+              id="c"
+              *ngIf="
+                signupForm.get('password')?.invalid &&
+                signupForm.get('password')?.touched
+              "
+              >Your password must contain 1 uppercase,1 lowercase,1 number,1
+              special character</span
+            >
+          </div>
+          <button class="button login__submit" [disabled]="!signupForm.valid">
+            <span routerLink="/products" class="button__text">Sign up</span>
+          </button>
+        </form>
+      </div>
+      <br />
+      <a routerLink="/login">Already have an account! click to login</a>
+      <div class="screen__background">
+        <span
+          class="screen__background__shape screen__background__shape4"
+        ></span>
+        <span
+          class="screen__background__shape screen__background__shape3"
+        ></span>
+        <span
+          class="screen__background__shape screen__background__shape2"
+        ></span>
+        <span
+          class="screen__background__shape screen__background__shape1"
+        ></span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,109 @@
+{
+  "products": [
+    {
+      "id": 3,
+      "title": "sugar",
+      "price": "4000",
+      "quantity": "1 kg",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqKYJXapnK5jEQATyeI8VQssdkWXTQ3KDxWw&usqp=CAU"
+    }
+  ],
+  "Signupusers": [
+    {
+      "firstname": "Santha Ruban",
+      "lastname": "Kalidasan",
+      "mobilenumber": "1234567890",
+      "email": "Santhu@gmail.com",
+      "password": "qazxswedc",
+      "id": 1
+    },
+    {
+      "firstname": "Manju",
+      "lastname": "Rekar",
+      "mobilenumber": "9876543210",
+      "email": "manjurekar@gmail.com",
+      "password": "Manjurekar24#",
+      "id": 2
+    },
+    {
+      "firstname": "Sri",
+      "lastname": "Ram",
+      "mobilenumber": "2423456787",
+      "email": "sri@gmail.com",
+      "password": "Sri@1207",
+      "id": 3
+    },
+    {
+      "firstname": "yokesh",
+      "lastname": "C",
+      "email": "yokeshcj@gmail.com",
+      "mobilenumber": "9944113458",
+      "password": "Yokesh123@",
+      "id": 4
+    },
+    {
+      "firstname": "karthik",
+      "lastname": "k",
+      "email": "karthik@gmail.com",
+      "mobilenumber": "8787652319",
+      "password": "Karthik@123",
+      "id": 5
+    },
+    {
+      "firstname": "kirthik",
+      "lastname": "R",
+      "email": "brvuho@gmail.com",
+      "mobilenumber": "0865345679",
+      "password": "Kirthik@123",
+      "id": 6
+    },
+    {
+      "firstname": "arulmozhi",
+      "lastname": "varman",
+      "email": "arul@gmail.com",
+      "mobilenumber": "9389421905",
+      "password": "Arulmozhivarman@8200",
+      "id": 10
+    },
+    {
+      "firstname": "puppy",
+      "lastname": "M",
+      "email": "puppy@gmail.com",
+      "mobilenumber": "9655467874",
+      "password": "Puppy@12345",
+      "id": 13
+    },
+    {
+      "firstname": "Ruban",
+      "lastname": "K",
+      "email": "ruban@gmail.com",
+      "mobilenumber": "8072612470",
+      "password": "Ruban@123",
+      "id": 14
+    },
+    {
+      "firstname": "fnkefn",
+      "lastname": "m",
+      "email": "lkqkwjfl@gmail.com",
+      "mobilenumber": "8564787445",
+      "password": "Zaqwsxcde@123",
+      "id": 15
+    },
+    {
+      "firstname": "kndfoeqho",
+      "lastname": "K",
+      "email": "ddhiu@gmail.com",
+      "mobilenumber": "9667565673",
+      "password": "Zaqwsxcde@123",
+      "id": 16
+    },
+    {
+      "firstname": "ajith",
+      "lastname": "kumar",
+      "email": "ajith@gmail.com",
+      "mobilenumber": "9986674965",
+      "password": "Ajith@015",
+      "id": 17
+    }
+  ]
+}
