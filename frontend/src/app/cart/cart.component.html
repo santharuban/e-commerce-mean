@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="color">
   <body id="class">
-    <ng-container *ngIf="items.length != 0">
+    <ng-container *ngIf="cartData.length != 0">
       <div class="container">
         <div class="card-table">
           <div class="cart-product">
@@ -17,7 +17,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let item of productitem; let i = index">
+                <tr *ngFor="let item of cartData; let i = index">
                   <td>{{ i + 1 }}</td>
                   <td>{{ item.title }}</td>
                   <td>
@@ -32,16 +32,18 @@
                     <button class="b" (click)="increase(item)">+</button><br />
                   </div>
                   <br />
-                  <td>{{ item.price * item.quantity }}</td>
+                  <td>{{ item.total }}</td>
                   <td>
-                    <button (click)="remove(item)" class="btn btn-danger">
+                    <button (click)="remove(item._id)" class="btn btn-danger">
                       delete
                     </button>
                   </td>
                 </tr>
                 <tr>
                   <td class="align">
-                    <strong>Total Amount :{{ grandtotal }}</strong>
+                    <strong
+                      >Total Amount :{{ cartData | sum : "total" }}</strong
+                    >
                   </td>
                   <button class="btn btn-primary" (click)="placeOrder()">
                     Place order
@@ -54,7 +56,7 @@
       </div>
     </ng-container>
 
-    <ng-container *ngIf="items.length == 0">
+    <ng-container *ngIf="cartData.length == 0">
       <div class="container">
         <div class="card">
           <h3>Add your items in the cart</h3>

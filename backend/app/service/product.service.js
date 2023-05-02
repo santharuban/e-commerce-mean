@@ -14,8 +14,8 @@ class ProductService {
     const products = new Products(postProducts);
     return saveData(products);
   }
-  getProducts() {
-    return findData(Products);
+  getProducts(data) {
+    return findData(Products,data);
   }
   getProductsById(id) {
     return findDataById(Products, id);

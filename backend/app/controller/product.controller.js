@@ -18,6 +18,16 @@ exports.createProducts = async (req, res) => {
   }
 };
 
+exports.getProducts = async (req, res) => {
+  try {
+    const data = req.body;
+    const Products = await productService.getProducts(data);
+    res.json(Products);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
 exports.getProductsById = async (req, res) => {
   try {
     const id = req.params.id;
@@ -58,7 +68,7 @@ exports.removeProducts = async (req, res) => {
 exports.getProductsByCategory = async (req, res) => {
   try {
     const category = req.query.category;
-    const products = await productService.getProductsByCategory({category});
+    const products = await productService.getProductsByCategory({ category });
     res.json(products);
   } catch (err) {
     res.status(500).send(err);

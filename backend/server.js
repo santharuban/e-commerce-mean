@@ -33,6 +33,7 @@ app.get("/", (req, res) => {
 require("./app/route/product.route")(app);
 require("./app/route/cart.route")(app);
 require("./app/route/user.route")(app);
+require("./app/route/usercart.route")(app);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

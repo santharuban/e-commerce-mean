@@ -11,6 +11,11 @@ class CartService {
   retrieveCart(id) {
     return findDataById(Cart,id);
   }
+  postCart(){
+    const cart=new Cart(data)
+    return saveData(cart);
+  }
 }
+
 const cartService = new CartService();
 module.exports = cartService;

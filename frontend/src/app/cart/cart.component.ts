@@ -6,51 +6,87 @@ import { products } from "datatype";
 import { MatDialog } from "@angular/material/dialog";
 import { OrderComponent } from "../order/order.component";
 import { DataService } from "../service/data.service";
-
+import { HttpClient } from "@angular/common/http";
+import jwtDecode from "jwt-decode";
 @Component({
   selector: "app-cart",
   templateUrl: "./cart.component.html",
   styleUrls: ["./cart.component.css"],
 })
 export class CartComponent implements OnInit {
-  public items: any = [];
+  public cartData!: any;
   public productitem: any;
-  user = localStorage.getItem("user");
+  public user = localStorage.getItem("user");
   public grandtotal!: number;
+  public email:any
+  public decode:any
   id!: number;
+  userCart = "http://localhost:3000/api/usercart/userproduct";
   constructor(
     private cart: CartService,
     private router: Router,
     private toastrService: ToastrService,
     public dialog: MatDialog,
-    public data: DataService
+    public data: DataService,
+    private http: HttpClient
   ) {}
-  ngOnInit(): void {
-    this.cart.getproducts().subscribe(
-      (res) => {
-        this.items = res;
+  ngOnInit() {
+    if(this.user!=null){
+      this.decode=jwtDecode(this.user)
+      this.email=this.decode.email
+     }
+    this.getCart()
+
+  }
+
+  getCart() {
+    this.http
+      .get(`${this.userCart}/${this.email}`)
+      .subscribe((res) => {
+        this.cartData = res;
         this.grandtotal = this.cart.getTotalPrice();
-      },
-      (error) => {
-        this.toastrService.error(`${error.name} error ${error.status}`);
-      }
-    );
-    this.productItem();
-    this.getCart(this.id);
+      });
   }
-  remove(item: products) {
-    this.cart.removeitem(item);
+  remove(item: any) {
+    console.log(item);
+    this.http.delete(`${this.userCart}/${item}`).subscribe(() => {
+      this.toastrService.warning("Item deleted");
+      this.getCart();
+    });
   }
-  public productItem() {
-    this.productitem = new Set(this.items);
+
+  increase(data: any) {
+    if (data.quantity >= 10) {
+      this.toastrService.info("You can add upto 10 units only !");
+      data.quantity = 10;
+    } else if (data.quantity >= 1) {
+      data.quantity++;
+      data.total = data.price * data.quantity;
+      this.http.put(`${this.userCart}/${data._id}`, data).subscribe(
+        () => {
+          this.getCart();
+        },
+        (err: any) => {
+          this.toastrService.error(`${err.status} Error ${err.message}`);
+        }
+      );
+    }
   }
-  increase(item: { quantity: number }) {
-    item.quantity = item.quantity + 1;
-    this.ngOnInit();
-  }
-  decrease(item: { quantity: number }) {
-    if (item.quantity != 1) item.quantity = item.quantity - 1;
-    this.ngOnInit();
+  decrease(data: any) {
+    if (data.quantity > 1) {
+      data.quantity--;
+      data.total = data.price * data.quantity;
+      this.http.put(`${this.userCart}/${data._id}`, data).subscribe(
+        () => {
+          this.getCart();
+        },
+        (err: any) => {
+          this.toastrService.error(`${err.status} Error ${err.message}`);
+        }
+      );
+    } else if (data.quantity == 1) {
+      this.remove(data._id);
+    }
   }
   async placeOrder() {
     for (const element of this.productitem) {
@@ -62,10 +98,5 @@ export class CartComponent implements OnInit {
       this.dialog.closeAll();
       this.cart.removeAll();
     }, 3000);
-  }
-  getCart(id: number) {
-    this.data.getCart(id).subscribe((res) => {
-      this.items = res;
-    });
   }
 }

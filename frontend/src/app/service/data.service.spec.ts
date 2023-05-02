@@ -1,10 +1,10 @@
-import { HttpClient, HttpHandler } from '@angular/common/http';
-import { TestBed } from '@angular/core/testing';
-import { User } from 'datatype';
+import { HttpClient, HttpHandler } from "@angular/common/http";
+import { TestBed } from "@angular/core/testing";
+import { User } from "datatype";
 
-import { DataService } from './data.service';
+import { DataService } from "./data.service";
 
-describe('DataService', () => {
+describe("DataService", () => {
   let service: DataService;
   let data: User;
 
@@ -15,13 +15,13 @@ describe('DataService', () => {
     service = TestBed.inject(DataService);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(service).toBeTruthy();
   });
-  it('', () => {
+  it("", () => {
     service.signupUsers(data);
   });
-  it('', () => {
+  it("", () => {
     service.getSignupusers(data);
   });
 });

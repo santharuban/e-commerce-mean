@@ -4,8 +4,10 @@ category: any;
     price:number;
     quantity:string;
     image:string;
-    total:string;
+    total:number;
     _id:number;
+    user:string;
+    
 }
 export interface User{
     email:string;

@@ -22,10 +22,8 @@ const generateToken = (payload) => {
   return token;
 };
 
-
-
 module.exports = {
   authTokenVerify: authVerify("Admin"),
   authTokenVerifyUser: authVerify("user"),
-  generateToken
+  generateToken,
 };

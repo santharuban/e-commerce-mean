@@ -19,14 +19,4 @@ exports.postUserCart = async (req, res) => {
   }
 };
 
-exports.getUserCart = async (req, res) => {
-  try {
-    const id = req.params.id;
-    const Cart = await cartService.retrieveCart(id);
-    res.json(Cart);
-  } catch (err) {
-    res
-      .status(400)
-      .send(err.message || "error occurs while getting the cart products");
-  }
-};
+

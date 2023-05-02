@@ -1,23 +1,37 @@
+import { HttpClient } from "@angular/common/http";
 import { isNgTemplate } from "@angular/compiler";
 import { Injectable } from "@angular/core";
 import { products } from "datatype";
 import { BehaviorSubject } from "rxjs";
-
+import jwtDecode from "jwt-decode";
 @Injectable({
   providedIn: "root",
 })
+
+
 export class CartService {
   public cartList: any = [];
   public productList = new BehaviorSubject<any>([]);
   public search = new BehaviorSubject<string>("");
-  constructor() {}
+  userCart="http://localhost:3000/api/usercart/userproduct";
+  constructor(private http:HttpClient) {}
+  user=localStorage.getItem("user")
+  public userData:any
   getproducts() {
     return this.productList.asObservable();
   }
   addCart(item: products) {
+    if(this.user!=null){
+     this.userData=jwtDecode(this.user)
+      console.log(this.userData);
+      item.user=this.userData.email
+    }
+    this.http.post(`${this.userCart}`,item).subscribe();
     this.cartList.push(item);
     this.productList.next(this.cartList);
     this.getTotalPrice();
+    this.postCartDb();
+
   }
   getTotalPrice(): number {
     let grandtotal = 0;
@@ -40,4 +54,14 @@ export class CartService {
     this.cartList = [];
     this.productList.next(this.cartList);
   }
+
+  postCartDb(){
+    const cartData={UserCart:this.cartList};
+    console.log(this.cartList);
+  
+  }
+
+  // getCartDb(){
+  //   this.http.get(`${this.userCart}`,item).subscribe();
+  // }
 }

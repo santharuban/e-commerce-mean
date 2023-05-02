@@ -20,6 +20,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
 import { UpdateComponent } from "./update/update.component";
 import { AuthInterceptor } from "./interceptor/auth.interceptor";
+import { CartSumPipe } from './shared/cart-sum.pipe';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AuthInterceptor } from "./interceptor/auth.interceptor";
     ViewEditProductComponent,
     OrderComponent,
     UpdateComponent,
+    CartSumPipe,
   ],
   imports: [
     BrowserModule,
@@ -47,8 +49,8 @@ import { AuthInterceptor } from "./interceptor/auth.interceptor";
     MatDialogModule,
     MatIconModule,
   ],
-  providers:[
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
 
   entryComponents: [OrderComponent, MatIconModule],
