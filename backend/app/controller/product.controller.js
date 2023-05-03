@@ -71,6 +71,8 @@ exports.getProductsByCategory = async (req, res) => {
     const products = await productService.getProductsByCategory({ category });
     res.json(products);
   } catch (err) {
-    res.status(500).send(err);
+    res
+      .status(500)
+      .send(err.message || "error occurs while getting the category");
   }
 };

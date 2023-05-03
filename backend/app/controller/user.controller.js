@@ -2,7 +2,7 @@ const userService = require("../service/user.service");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 require("dotenv").config();
-const {generateToken}=require("../../middleware/authTokenVerify");
+const { generateToken } = require("../../middleware/authTokenVerify");
 exports.createUser = async (req, res) => {
   const users = {
     email: req.body.email,
@@ -32,7 +32,6 @@ exports.signInUsers = async (req, res) => {
       role: "Admin",
       accessToken: tokenv,
     });
-    console.log(tokenv);
   } else {
     const UserData = await userService.getUsersSingleData({
       email: req.body.email,
@@ -50,7 +49,7 @@ exports.signInUsers = async (req, res) => {
           message: "Invalid Password",
         });
       }
-      const token = generateToken({ email: req.body.email, role: "user" });
+      const token = generateToken({ userId: UserData._id, role: "user" });
       res.status(200).send({
         message: "Login successfull",
         role: "user",

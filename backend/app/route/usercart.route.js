@@ -4,7 +4,7 @@ const auth = require("../../middleware/authTokenVerify.js");module.exports = (ap
     var router=require("express").Router();
 
     router.post("/userproduct",auth.authTokenVerifyUser,usercart.postCart);
-    router.get("/userproduct/:email",auth.authTokenVerifyUser,usercart.getUserCart);
+    router.get("/userproduct/:id",auth.authTokenVerifyUser,usercart.getUserCart);
     router.delete("/userproduct/:id", auth.authTokenVerifyUser, usercart.removeCart);
     router.put("/userproduct/:id", auth.authTokenVerifyUser, usercart.updateDelivery);
     app.use("/api/usercart",router);

@@ -8,8 +8,8 @@ class UserCartService {
     const usercart = new Usercart(carts);
     return saveData(usercart);
   }
-  getUserCart(data){
-    return findData(Usercart,data);
+  getUserCart(id){
+    return findData(Usercart,id);
   }
   removeCart(id) {
     return deleteData(Usercart, id);

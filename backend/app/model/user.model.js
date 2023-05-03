@@ -1,15 +1,21 @@
-module.exports = mongoose => {
-    const Users = mongoose.model("Users",mongoose.Schema(
+module.exports = (mongoose) => {
+  const Users = mongoose.model(
+    "Users",
+    mongoose.Schema(
       {
-          email:String,
-          password:String,
-          firstname:String,
-          lastname:String,
-          mobilenumber:Number,
+        email: {
+          type: String,
+          required: true,
+          unique: true,
+        },
+        password: String,
+        firstname: String,
+        lastname: String,
+        mobilenumber: Number,
       },
       { timestamps: true }
     )
-    );
-  
-    return Users;
-  };
+  );
+
+  return Users;
+};
