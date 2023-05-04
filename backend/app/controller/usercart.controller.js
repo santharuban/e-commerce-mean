@@ -13,21 +13,19 @@ exports.postCart = async (req, res) => {
     const dataPost = await usercartService.createUserCart(carts);
     res.json(dataPost);
   } catch (err) {
-    if(err.code===11000){
-      res.status(400).json({message:"email already exists"})
-    }else{
+    if (err.code === 11000) {
+      res.status(400).json({ message: "email already exists" });
+    } else {
       res
-      .status(500)
-      .send(err.message || "error occurs while pushing the cart products");
+        .status(500)
+        .send(err.message || "error occurs while pushing the cart products");
     }
-   
   }
 };
 
 exports.getUserCart = async (req, res) => {
   try {
     const userId = req.query;
-    console.log(userId);
     const product = await usercartService.getUserCart(userId);
     res.json(product);
   } catch (err) {

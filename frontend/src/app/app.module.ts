@@ -21,6 +21,9 @@ import { MatIconModule } from "@angular/material/icon";
 import { UpdateComponent } from "./update/update.component";
 import { AuthInterceptor } from "./interceptor/auth.interceptor";
 import { CartSumPipe } from './shared/cart-sum.pipe';
+import {NgxPaginationModule} from 'ngx-pagination'; 
+ 
+
 
 @NgModule({
   declarations: [
@@ -48,6 +51,7 @@ import { CartSumPipe } from './shared/cart-sum.pipe';
     ToastrModule.forRoot(),
     MatDialogModule,
     MatIconModule,
+    NgxPaginationModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

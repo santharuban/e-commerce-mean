@@ -10,7 +10,7 @@ export class AdminService {
   constructor(private http: HttpClient) {}
 
   getProducts() {
-    return this.http.get<any>("http://localhost:3000/api/products/admin");
+    return this.http.get<any>("http://localhost:3000/api/products/admin?page=1&size=5");
   }
   postProducts(product: products) {
     return this.http.post("http://localhost:3000/api/products", product);

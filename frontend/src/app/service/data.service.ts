@@ -13,6 +13,9 @@ export class DataService {
   getProducts(data: string) {
     return this.http.get(`http://localhost:3000/api/products?category=${data}`);
   }
+  getAllProducts() {
+    return this.http.get(`http://localhost:3000/api/products`);
+  }
   signupUsers(data: User) {
     return this.http.post("http://localhost:3000/api/users", data);
   }

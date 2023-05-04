@@ -17,6 +17,7 @@ export class ProductsComponent implements OnInit {
   item!: products;
   searchKey: string = "";
   public filterCategory: any;
+  page:number=1;
   constructor(
     private data: DataService,
     private cart: CartService,
@@ -24,10 +25,28 @@ export class ProductsComponent implements OnInit {
     private toastrService: ToastrService
   ) {}
   ngOnInit(): void {
-    this.filter("");
+    this.getProduct();
   }
   addCart(item: products) {
     this.cart.addCart(item);
+  }
+  getProduct(){
+    this.data.getAllProducts().subscribe(
+      (res) => {
+        this.productList = res;
+        this.filterCategory = res;
+
+        this.productList.forEach((item: products) => {
+          Object.assign(item, { quantity: 1, total: item.price });
+        });
+        this.cart.search.subscribe((value: any) => {
+          this.searchKey = value;
+        });
+      },
+      (error) => {
+        this.toastrService.error(`${error.name} error ${error.status}`);
+      }
+    )
   }
   filter(category: string) {
     this.data.getProducts(category).subscribe(

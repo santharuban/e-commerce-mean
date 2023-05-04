@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit } from "@angular/core";
+import { Component, OnChanges, OnInit,ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { products } from "datatype";
 import { ToastrService } from "ngx-toastr";
@@ -7,6 +7,8 @@ import { MatDialog } from "@angular/material/dialog";
 import { UpdateComponent } from "../update/update.component";
 import { CartService } from "../service/cart.service";
 
+
+
 @Component({
   selector: "app-view-edit-product",
   templateUrl: "./view-edit-product.component.html",
@@ -14,12 +16,13 @@ import { CartService } from "../service/cart.service";
 })
 export class ViewEditProductComponent implements OnInit {
   public items!: products[];
+  page:number=1;
   constructor(
     private admin: AdminService,
     private router: Router,
     private toastrService: ToastrService,
     public dialog: MatDialog,
-    private cart: CartService
+    private cart: CartService,
   ) {}
   ngOnInit(): void {
     this.getProducts();

@@ -5,7 +5,6 @@ import { ToastrService } from "ngx-toastr";
 import { of, throwError } from "rxjs";
 import { HeaderComponent } from "../header/header.component";
 import { DataService } from "../service/data.service";
-
 import { ProductsComponent } from "./products.component";
 
 describe("ProductsComponent", () => {

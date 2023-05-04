@@ -22,6 +22,9 @@ const deleteData = async (Model, id) => {
   return Model.findByIdAndRemove(id);
 };
 
+const findPagination=async (Model,id) =>{
+  return Model.find().limit(limit).skip(skip);
+}
 module.exports = {
   saveData,
   findData,
@@ -29,5 +32,6 @@ module.exports = {
   findDataById,
   editData,
   deleteData,
+  findPagination,
 };
 

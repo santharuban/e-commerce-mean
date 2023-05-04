@@ -7,31 +7,28 @@ import jwtDecode from "jwt-decode";
 @Injectable({
   providedIn: "root",
 })
-
-
 export class CartService {
   public cartList: any = [];
   public productList = new BehaviorSubject<any>([]);
   public search = new BehaviorSubject<string>("");
-  userCart="http://localhost:3000/api/usercart/userproduct";
-  constructor(private http:HttpClient) {}
-  
-  public userData:any
+  userCart = "http://localhost:3000/api/usercart/userproduct";
+  constructor(private http: HttpClient) {}
+
+  public userData: any;
   getproducts() {
     return this.productList.asObservable();
   }
   addCart(item: products) {
-   const user=localStorage.getItem("user")
-    if(user!=null){
-     this.userData=jwtDecode(user)
-      item.user=this.userData.userId
-      this.http.post(`${this.userCart}`,item).subscribe();
+    const user = localStorage.getItem("user");
+    if (user != null) {
+      this.userData = jwtDecode(user);
+      item.user = this.userData.userId;
+      this.http.post(`${this.userCart}`, item).subscribe();
     }
     this.cartList.push(item);
     this.productList.next(this.cartList);
     this.getTotalPrice();
     this.postCartDb();
-
   }
   getTotalPrice(): number {
     let grandtotal = 0;
@@ -55,9 +52,7 @@ export class CartService {
     this.productList.next(this.cartList);
   }
 
-  postCartDb(){
-    const cartData={UserCart:this.cartList};
-    console.log(this.cartList);
-  
+  postCartDb() {
+    const cartData = { UserCart: this.cartList };
   }
 }

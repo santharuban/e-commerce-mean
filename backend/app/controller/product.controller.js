@@ -18,13 +18,25 @@ exports.createProducts = async (req, res) => {
   }
 };
 
-exports.getProducts = async (req, res) => {
+exports.getProducts = async (req, res,next) => {
   try {
-    const data = req.body;
-    const Products = await productService.getProducts(data);
+    let {page,size}=req.query;
+    if(!page){
+       page=1;
+    }
+    if(!size){
+       size=5;
+    }
+    const limit=parseInt(size);
+    const skip =(page -1)*size;
+
+    const Products = await productService.getProducts().limit(limit).skip(skip);
+    const data=req.body;
+    // const Products = await productService.getProducts(data);
     res.json(Products);
+    res.json({page,size,data:users})
   } catch (err) {
-    res.status(500).send(err);
+    res.status(500).send(err || "error occurs while getting the product");
   }
 };
 
@@ -68,8 +80,13 @@ exports.removeProducts = async (req, res) => {
 exports.getProductsByCategory = async (req, res) => {
   try {
     const category = req.query.category;
-    const products = await productService.getProductsByCategory({ category });
-    res.json(products);
+    if (category == null) {
+      const products = await productService.getProducts({});
+      res.json(products);
+    } else {
+      const products = await productService.getProductsByCategory({ category });
+      res.json(products);
+    }
   } catch (err) {
     res
       .status(500)

@@ -15,6 +15,7 @@ class ProductService {
     return saveData(products);
   }
   getProducts(data) {
+    console.log("aaa",data)
     return findData(Products,data);
   }
   getProductsById(id) {
@@ -29,6 +30,10 @@ class ProductService {
 
   getProductsByCategory(category) {
     return findData(Products, category);
+  }
+
+  getProductsUser(data){
+    return findData(Products,data);
   }
 }
 const productService = new ProductService();

@@ -30,5 +30,6 @@ export class AdminComponent {
       }
     );
     addproduct.resetForm();
+    this.router.navigate(['/view-edit']);
   }
 }
