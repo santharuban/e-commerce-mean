@@ -26,8 +26,9 @@ exports.postCart = async (req, res) => {
 
 exports.getUserCart = async (req, res) => {
   try {
-    const id = req.params;
-    const product = await usercartService.getUserCart(id);
+    const userId = req.query;
+    console.log(userId);
+    const product = await usercartService.getUserCart(userId);
     res.json(product);
   } catch (err) {
     res.status(500).send(err.message || "error occurs in getting the cart");

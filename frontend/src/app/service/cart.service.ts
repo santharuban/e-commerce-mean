@@ -15,18 +15,18 @@ export class CartService {
   public search = new BehaviorSubject<string>("");
   userCart="http://localhost:3000/api/usercart/userproduct";
   constructor(private http:HttpClient) {}
-  user=localStorage.getItem("user")
+  
   public userData:any
   getproducts() {
     return this.productList.asObservable();
   }
   addCart(item: products) {
-    if(this.user!=null){
-     this.userData=jwtDecode(this.user)
-      console.log(this.userData);
-      item.user=this.userData.email
+   const user=localStorage.getItem("user")
+    if(user!=null){
+     this.userData=jwtDecode(user)
+      item.user=this.userData.userId
+      this.http.post(`${this.userCart}`,item).subscribe();
     }
-    this.http.post(`${this.userCart}`,item).subscribe();
     this.cartList.push(item);
     this.productList.next(this.cartList);
     this.getTotalPrice();
@@ -60,8 +60,4 @@ export class CartService {
     console.log(this.cartList);
   
   }
-
-  // getCartDb(){
-  //   this.http.get(`${this.userCart}`,item).subscribe();
-  // }
 }

@@ -5,7 +5,7 @@ module.exports = mongoose => {
         price:Number,
         quantity:Number,
         image:String,
-        email:String,
+        userId:String,
         total:Number,
       },
       { timestamps: true }

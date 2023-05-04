@@ -16,9 +16,9 @@ import jwtDecode from "jwt-decode";
 export class CartComponent implements OnInit {
   public cartData!: any;
   public productitem: any;
-  public user = localStorage.getItem("user");
+  // public ;
   public grandtotal!: number;
-  public email:any
+  public userId:any
   public decode:any
   id!: number;
   userCart = "http://localhost:3000/api/usercart/userproduct";
@@ -31,17 +31,19 @@ export class CartComponent implements OnInit {
     private http: HttpClient
   ) {}
   ngOnInit() {
-    if(this.user!=null){
-      this.decode=jwtDecode(this.user)
-      this.email=this.decode.email
+   const user = localStorage.getItem("user")
+    if(user!=null){
+      this.decode=jwtDecode(user)
+      this.userId=this.decode.userId
      }
     this.getCart()
 
   }
 
   getCart() {
+    console.log("jhgfdx",this.userId)
     this.http
-      .get(`${this.userCart}/${this.email}`)
+      .get(`${this.userCart}/${this.userId}`)
       .subscribe((res) => {
         this.cartData = res;
         this.grandtotal = this.cart.getTotalPrice();
@@ -89,14 +91,14 @@ export class CartComponent implements OnInit {
     }
   }
   async placeOrder() {
-    for (const element of this.productitem) {
-      element.user = this.user;
-      await this.data.addToCart(element).subscribe();
-    }
-    this.dialog.open(OrderComponent);
-    setTimeout(() => {
-      this.dialog.closeAll();
-      this.cart.removeAll();
-    }, 3000);
+  //   for (const element of this.productitem) {
+  //     element.user = this.user;
+  //     await this.data.addToCart(element).subscribe();
+  //   }
+  //   this.dialog.open(OrderComponent);
+  //   setTimeout(() => {
+  //     this.dialog.closeAll();
+  //     this.cart.removeAll();
+  //   }, 3000);
   }
 }
