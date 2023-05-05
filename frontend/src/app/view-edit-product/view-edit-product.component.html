@@ -19,7 +19,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of items | paginate:{itemsPerPage:5,currentPage:page} let i = index">
+            <tr *ngFor="let item of items let i = index">
               <td>{{ i + 1 }}</td>
               <td>{{ item.title }}</td>
               <td>
@@ -50,7 +50,7 @@
           </tbody>
         </table>
         <div class="d-flex justify-content-center">
-          <pagination-controls (pageChange)="page = $event"></pagination-controls>
+          <pagination-controls (click)="paget()"></pagination-controls>
         </div>
       </div>
     </div>

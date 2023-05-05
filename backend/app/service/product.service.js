@@ -6,6 +6,7 @@ const {
   findDataById,
   editData,
   deleteData,
+  findPagination,
 } = require("./db.service");
 const Products = db.products;
 
@@ -14,10 +15,22 @@ class ProductService {
     const products = new Products(postProducts);
     return saveData(products);
   }
-  getProducts(data) {
-    console.log("aaa",data)
-    return findData(Products,data);
-  }
+
+ 
+  // getProducts = (data, limit, page, sort) => {
+  //   const skip = (parseInt(page) - 1) * parseInt(limit);
+  //   return findPagination(Products, data, parseInt(limit), skip, sort);
+  // };
+
+  getProducts = (data, limit, page, sort) => {
+    const skip = (parseInt(page) - 1) * parseInt(limit);
+    return findPagination(Products, data, parseInt(limit), skip, sort);
+  };
+
+  
+  
+  
+
   getProductsById(id) {
     return findDataById(Products, id);
   }
@@ -32,8 +45,8 @@ class ProductService {
     return findData(Products, category);
   }
 
-  getProductsUser(data){
-    return findData(Products,data);
+  getProductsUser(data) {
+    return findData(Products, data);
   }
 }
 const productService = new ProductService();

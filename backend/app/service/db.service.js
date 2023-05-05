@@ -22,9 +22,21 @@ const deleteData = async (Model, id) => {
   return Model.findByIdAndRemove(id);
 };
 
-const findPagination=async (Model,id) =>{
-  return Model.find().limit(limit).skip(skip);
-}
+// const findPagination = async (Model, data, limit, skip) => {
+//   const count = await Model.countDocuments(data);
+//   const totalPages = Math.ceil(count / limit);
+//   const results = await Model.find().skip(skip).limit(limit).exec();
+//   return { results, totalPages };
+// };
+const findPagination = async (Model, data, limit, skip,sort) => {
+  const count = await Model.countDocuments(data);
+  const totalPages = Math.ceil(count / limit);
+  const results = await Model.find().sort(sort).skip(skip).limit(limit).exec();
+  return { results, totalPages, skip, limit,sort };
+};
+
+
+
 module.exports = {
   saveData,
   findData,
@@ -34,4 +46,3 @@ module.exports = {
   deleteData,
   findPagination,
 };
-

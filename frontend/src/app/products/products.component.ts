@@ -32,9 +32,8 @@ export class ProductsComponent implements OnInit {
   }
   getProduct(){
     this.data.getAllProducts().subscribe(
-      (res) => {
-        this.productList = res;
-        this.filterCategory = res;
+      (res:any) => {
+        this.productList = res.data;
 
         this.productList.forEach((item: products) => {
           Object.assign(item, { quantity: 1, total: item.price });

@@ -7,10 +7,12 @@ import { map, pipe } from "rxjs";
   providedIn: "root",
 })
 export class AdminService {
+  page: any;
+  limit: any;
   constructor(private http: HttpClient) {}
 
-  getProducts() {
-    return this.http.get<any>("http://localhost:3000/api/products/admin?page=1&size=5");
+  getProducts(page:number,limit:number) {
+    return this.http.get<any>(`http://localhost:3000/api/products/admin?page=${page}&limit=${limit}`);
   }
   postProducts(product: products) {
     return this.http.post("http://localhost:3000/api/products", product);

@@ -1,3 +1,4 @@
+const { users } = require("../model");
 const productService = require("../service/product.service");
 
 exports.createProducts = async (req, res) => {
@@ -18,27 +19,106 @@ exports.createProducts = async (req, res) => {
   }
 };
 
-exports.getProducts = async (req, res,next) => {
-  try {
-    let {page,size}=req.query;
-    if(!page){
-       page=1;
-    }
-    if(!size){
-       size=5;
-    }
-    const limit=parseInt(size);
-    const skip =(page -1)*size;
+// exports.getProducts = async (req, res, next) => {
+//   try {
+//     const { page = 1, limit = 5 } = req.query;
+//     const { results, totalPages } = await productService.getProducts(
+//       req.query,
+//       limit,
+//       page
+//     );
+//     res.json({
+//       data: results,
+//       totalPages: totalPages,
+//       currentPage: parseInt(page),
+//     });
+//   } catch (err) {
+//     console.error(err.message);
+//     next(err || "error occurs while getting the product");
+//   }
+// };
 
-    const Products = await productService.getProducts().limit(limit).skip(skip);
-    const data=req.body;
-    // const Products = await productService.getProducts(data);
-    res.json(Products);
-    res.json({page,size,data:users})
+// exports.getProducts = async (req, res, next) => {
+//   try {
+//     const { page = 1, limit = 5 } = req.query;
+//     const { results, totalPages } = await productService.getProducts(
+//       req.query,
+//       limit,
+//       page
+//     );
+
+//     const currentPage = parseInt(page);
+//     const prevPage = currentPage > 1 ? currentPage - 1 : null;
+//     const nextPage = currentPage < totalPages ? currentPage + 1 : null;
+
+//     res.json({
+//       data: results,
+//       totalPages: totalPages,
+//       currentPage: parseInt(page),
+//       prevPage: prevPage,
+//       nextPage: nextPage,
+//     });
+//   } catch (err) {
+//     console.error(err.message);
+//     next(err || "error occurs while getting the product");
+//   }
+// };
+
+exports.getProducts = async (req, res, next) => {
+  try {
+    const { page = 1, limit = 5, sort } = req.query;
+    const { results, totalPages } = await productService.getProducts(
+      req.query,
+      limit,
+      page,
+      sort
+    );
+
+    const currentPage = parseInt(page);
+    const prevPage = currentPage > 1 ? currentPage - 1 : null;
+    const nextPage = currentPage < totalPages ? currentPage + 1 : null;
+
+    res.json({
+      data: results,
+      totalPages: totalPages,
+      currentPage: parseInt(page),
+      prevPage: prevPage,
+      nextPage: nextPage,
+    });
   } catch (err) {
-    res.status(500).send(err || "error occurs while getting the product");
+    console.error(err.message);
+    next(err || "error occurs while getting the product");
   }
 };
+// exports.getProducts=async (req,res,next) =>{
+//   try {
+//     const { page = 1, limit = 5, sort } = req.query;
+//     const { results, totalPages } = await productService.getProducts(
+//       req.query,
+//       limit,
+//       page,
+//       sort
+//     );
+
+//     res.json({
+//       data: results,
+//       totalPages: totalPages,
+//       currentPage: parseInt(page),
+//     });
+//   } catch (err) {
+//     console.error(err.message);
+//     next(err || "error occurs while getting the product");
+//   }
+// };
+
+
+
+
+
+
+
+
+
 
 exports.getProductsById = async (req, res) => {
   try {
@@ -79,10 +159,19 @@ exports.removeProducts = async (req, res) => {
 
 exports.getProductsByCategory = async (req, res) => {
   try {
+    const { page = 1, limit = 5 } = req.query;
     const category = req.query.category;
     if (category == null) {
-      const products = await productService.getProducts({});
-      res.json(products);
+      const { results, totalPages } = await productService.getProducts(
+        req.query,
+        limit,
+        page
+      );
+      res.json({
+        data: results,
+        totalPages: totalPages,
+        currentPage: parseInt(page),
+      });
     } else {
       const products = await productService.getProductsByCategory({ category });
       res.json(products);
@@ -93,3 +182,5 @@ exports.getProductsByCategory = async (req, res) => {
       .send(err.message || "error occurs while getting the category");
   }
 };
+
+
