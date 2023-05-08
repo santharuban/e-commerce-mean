@@ -20,10 +20,8 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
 import { UpdateComponent } from "./update/update.component";
 import { AuthInterceptor } from "./interceptor/auth.interceptor";
-import { CartSumPipe } from './shared/cart-sum.pipe';
-import {NgxPaginationModule} from 'ngx-pagination'; 
- 
-
+import { CartSumPipe } from "./shared/cart-sum.pipe";
+import { NgxPaginationModule } from "ngx-pagination";
 
 @NgModule({
   declarations: [

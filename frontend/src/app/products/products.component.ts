@@ -17,7 +17,12 @@ export class ProductsComponent implements OnInit {
   item!: products;
   searchKey: string = "";
   public filterCategory: any;
-  page:number=1;
+  public page: number = 1;
+  limit: number = 5;
+  prevPage!: number
+  nextPage: number | null = null;
+  sort: string = "asc";
+  currentPage: any;
   constructor(
     private data: DataService,
     private cart: CartService,
@@ -30,9 +35,9 @@ export class ProductsComponent implements OnInit {
   addCart(item: products) {
     this.cart.addCart(item);
   }
-  getProduct(){
-    this.data.getAllProducts().subscribe(
-      (res:any) => {
+  getProduct() {
+    this.data.getAllProducts(this.page, this.limit, this.sort).subscribe(
+      (res: any) => {
         this.productList = res.data;
 
         this.productList.forEach((item: products) => {
@@ -45,7 +50,7 @@ export class ProductsComponent implements OnInit {
       (error) => {
         this.toastrService.error(`${error.name} error ${error.status}`);
       }
-    )
+    );
   }
   filter(category: string) {
     this.data.getProducts(category).subscribe(
@@ -64,5 +69,16 @@ export class ProductsComponent implements OnInit {
         this.toastrService.error(`${error.name} error ${error.status}`);
       }
     );
+  }
+  goToPrevPage() {
+      if(this.prevPage!==null){
+      this.page = this.prevPage;
+      this.getProduct();
+      }
+    
+  }
+  paget() {
+    this.page++;
+    this.getProduct();
   }
 }

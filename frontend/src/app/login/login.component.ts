@@ -43,12 +43,12 @@ export class LoginComponent implements OnInit {
           this.toastrService.success("you re successfully logged in");
           localStorage.setItem("user", res.accessToken);
           this.Form.reset();
-          sessionStorage.setItem("user",this.Form.value.email)
+          sessionStorage.setItem("user", this.Form.value.email);
           this.router.navigate(["home"]);
         }
       },
       (error) => {
-        this.toastrService.error('invalid user credentials');
+        this.toastrService.error("invalid user credentials");
       }
     );
   }

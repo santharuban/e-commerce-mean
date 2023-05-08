@@ -5,6 +5,6 @@ module.exports = (app) => {
 
   var router = require("express").Router();
 
-  router.post("/",auth.authTokenVerifyUser, cart.postUserCart);
+  router.post("/", auth.authTokenVerifyUser, cart.postUserCart);
   app.use("/api/cart", router);
 };

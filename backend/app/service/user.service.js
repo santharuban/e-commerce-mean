@@ -1,6 +1,11 @@
 const { json } = require("express");
 const db = require("../model");
-const { saveData, findData, findDataById,findSingleData } = require("./db.service");
+const {
+  saveData,
+  findData,
+  findDataById,
+  findSingleData,
+} = require("./db.service");
 const Users = db.users;
 
 class UserService {
@@ -15,8 +20,8 @@ class UserService {
     return findDataById(Users, id);
   }
 
-  getUsersSingleData(data){
-    return findSingleData(Users,data);
+  getUsersSingleData(data) {
+    return findSingleData(Users, data);
   }
 }
 const userService = new UserService();

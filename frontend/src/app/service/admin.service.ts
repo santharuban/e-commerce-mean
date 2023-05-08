@@ -1,7 +1,6 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { products } from "datatype";
-import { map, pipe } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -9,10 +8,13 @@ import { map, pipe } from "rxjs";
 export class AdminService {
   page: any;
   limit: any;
+  sort = "asc";
   constructor(private http: HttpClient) {}
 
-  getProducts(page:number,limit:number) {
-    return this.http.get<any>(`http://localhost:3000/api/products/admin?page=${page}&limit=${limit}`);
+  getProducts(page: number, limit: number, sort: string) {
+    return this.http.get<any>(
+      `http://localhost:3000/api/products/admin?page=${page}&limit=${limit}&sort=${sort}`
+    );
   }
   postProducts(product: products) {
     return this.http.post("http://localhost:3000/api/products", product);

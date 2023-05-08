@@ -18,5 +18,3 @@ exports.postUserCart = async (req, res) => {
       .send(err.message || "error occurs while pushing the cart products");
   }
 };
-
-

@@ -78,12 +78,7 @@
   <body id="row">
     <div class="container">
       <div class="row">
-        <ng-container
-          *ngFor="
-            let item of productList
-              | paginate : { itemsPerPage: 3, currentPage: page }
-          "
-        >
+        <ng-container *ngFor="let item of productList">
           <div class="card col-md-3">
             <img src="{{ item.image }}" alt="" />
             <h2>
@@ -98,10 +93,15 @@
             </button>
           </div>
         </ng-container>
-        <div class="d-flex justify-content-center">
-          <pagination-controls
-            (pageChange)="page = $event"
-          ></pagination-controls>
+        <div>
+          <button
+            class="buttons"
+            [disabled]="prevPage === null"
+            (click)="goToPrevPage()"
+          >
+            Previous Page
+          </button>
+          <button class="button" (click)="paget()">Next Page</button>
         </div>
         <br />
         <br />

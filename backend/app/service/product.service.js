@@ -16,20 +16,10 @@ class ProductService {
     return saveData(products);
   }
 
- 
-  // getProducts = (data, limit, page, sort) => {
-  //   const skip = (parseInt(page) - 1) * parseInt(limit);
-  //   return findPagination(Products, data, parseInt(limit), skip, sort);
-  // };
-
   getProducts = (data, limit, page, sort) => {
     const skip = (parseInt(page) - 1) * parseInt(limit);
     return findPagination(Products, data, parseInt(limit), skip, sort);
   };
-
-  
-  
-  
 
   getProductsById(id) {
     return findDataById(Products, id);

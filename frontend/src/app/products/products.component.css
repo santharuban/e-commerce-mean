@@ -67,3 +67,12 @@
 .item a:hover {
   color: blue;
 }
+
+.button {
+  margin-right: 500px;
+  margin-top: 15px;
+}
+
+.buttons {
+  margin-left: 450px;
+}

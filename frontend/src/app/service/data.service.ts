@@ -7,14 +7,19 @@ import { User, products } from "datatype";
 })
 export class DataService {
   signupForm!: User;
+  page: any;
+  limit: any;
+  sort = "alphabetical";
 
   constructor(private http: HttpClient) {}
 
   getProducts(data: string) {
     return this.http.get(`http://localhost:3000/api/products?category=${data}`);
   }
-  getAllProducts() {
-    return this.http.get(`http://localhost:3000/api/products?page=1&limit=100`);
+  getAllProducts(page: number, limit: number, sort: string) {
+    return this.http.get(
+      `http://localhost:3000/api/products?page=${page}&limit=${limit}&sort=${sort}`
+    );
   }
   signupUsers(data: User) {
     return this.http.post("http://localhost:3000/api/users", data);
